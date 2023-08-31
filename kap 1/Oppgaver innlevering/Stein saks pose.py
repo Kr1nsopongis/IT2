@@ -2,10 +2,7 @@ import random as r
 tall = 0
 streak = 0
 
-
-
-
-
+print("Stein, saks ,papir!! Spillet fortsetter til du klarer å vinne tre ganger på rad")
 
 while streak < 3:
     
@@ -36,7 +33,7 @@ while streak < 3:
         print("uavgjort")
     else:
         print("datamaskinen vant")
-
+#while-løkke som kjører helt til spilleren har vunnet tre ganger. 
 if streak == 3:
         print("du vant tre ganger")
     
