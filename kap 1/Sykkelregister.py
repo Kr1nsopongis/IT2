@@ -24,7 +24,7 @@ def registrer():
     
 if Brukervalg == "Ja":
     registrer()
-elif Brukervalg = "Nei"
-
+elif Brukervalg == "Nei":
+    print("hei")
 # registrer()
 print(register)
