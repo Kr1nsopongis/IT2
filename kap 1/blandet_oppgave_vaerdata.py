@@ -3,7 +3,7 @@
   "lon": 10.78,
   "timezone": "Europe/Oslo",
   "timezone_offset": 7200,
-  "hourly": [
+  "hourly": [           
     {
       "dt": 1649678400,
       "temp": 282.36,
