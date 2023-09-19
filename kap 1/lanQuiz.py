@@ -28,3 +28,5 @@ if landInfo[land][1] == skrevetGrenseland:
     print("Du gjettet riktig")
 else:
     print("du gjettet feil")
+
+    
