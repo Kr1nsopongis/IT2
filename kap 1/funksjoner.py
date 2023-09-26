@@ -24,7 +24,5 @@ def speedCheck():
     else:
         print("du kjørte ikke i 80 km/h")
 
-
-
 main()
 
