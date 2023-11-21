@@ -26,19 +26,26 @@ varer = {
 
 }
 
+
+
 def printVarer():
     print("Vare id: Asus Zenbook GH215 \nPris:", varer["Asus Zenbook GH215"]["pris"],"\nVarelager:",varer["Asus Zenbook GH215"]["varelager"],"\nProduktinfo",varer["Asus Zenbook GH215"]["produktinfo"],"\nTekniske egenskaper:\n","\t - Prosessor:", varer["Asus Zenbook GH215"]["tekniskeEgenskaper"]["prosessor"],"\n\t - Grafikkort",varer["Asus Zenbook GH215"]["tekniskeEgenskaper"]["grafikkort"],"\n\t - Batterikapasitet",varer["Asus Zenbook GH215"]["tekniskeEgenskaper"]["batterikapasitet"],"\n\t - Vekt",varer["Asus Zenbook GH215"]["tekniskeEgenskaper"]["vekt"],"\n Farger:","\n\t -", varer["Asus Zenbook GH215"]["farger"][0],"\n\t -", varer["Asus Zenbook GH215"]["farger"][1],"\n\n")
-    print("Vare id: Samsung Galaxy S22 GH67 \nPris:", varer["Samsung Galaxy S22 GH67"]["pris"],"\nVarelager:",varer["Samsung Galaxy S22 GH67"]["varelager"],"\nProduktinfo",varer["Samsung Galaxy S22 GH67"]["produktinfo"],"\nTekniske egenskaper:\n","\t - Prosessor:", varer["Samsung Galaxy S22 GH67"]["tekniskeEgenskaper"]["prosessor"],"\n\t - Grafikkort",varer["Samsung Galaxy S22 GH67"]["tekniskeEgenskaper"]["grafikkort"],"\n\t - Batterikapasitet",varer["Samsung Galaxy S22 GH67"]["tekniskeEgenskaper"]["batterikapasitet"],"\n\t - Vekt",varer["Samsung Galaxy S22 GH67"]["tekniskeEgenskaper"]["vekt"],"\n Farger:","\n\t -", varer["Samsung Galaxy S22 GH67"]["farger"][0],"\n\t -", varer["Samsung Galaxy S22 GH67"]["farger"][1],"\n\t -", varer["Samsung Galaxy S22 GH67"]["farger"][2])
+    print("Vare id: Samsung Galaxy S22 GH67 \nPris:", varer["Samsung Galaxy S22 GH67"]["pris"],"\nVarelager:",varer["Samsung Galaxy S22 GH67"]["varelager"],"\nProduktinfo",varer["Samsung Galaxy S22 GH67"]["produktinfo"],"\nTekniske egenskaper:\n","\t - Prosessor:", varer["Samsung Galaxy S22 GH67"]["tekniskeEgenskaper"]["prosessor"],"\n\t - Grafikkort",varer["Samsung Galaxy S22 GH67"]["tekniskeEgenskaper"]["grafikkort"],"\n\t - Batterikapasitet",varer["Samsung Galaxy S22 GH67"]["tekniskeEgenskaper"]["batterikapasitet"],"\n\t - Vekt",varer["Samsung Galaxy S22 GH67"]["tekniskeEgenskaper"]["vekt"],"\n Farger:",varer["Samsung Galaxy S22 GH67"]["farger"])
 
+# "\n\t -", varer["Samsung Galaxy S22 GH67"]["farger"][0],"\n\t -", varer["Samsung Galaxy S22 GH67"]["farger"][1],"\n\t -", varer["Samsung Galaxy S22 GH67"]["farger"][2
 def oppdaterePris():
     id = input("Skriv inn en vare ID")
     nyPris = input("skriv inn den nye prisen")
     varer[id].update({"pris":nyPris})  #https://www.tutorialspoint.com/How-to-update-a-Python-dictionary-values
 
 def oppdatereFarge():
-    id = input("Skriv inn en vare ID")
-    nyFarge = input("skriv inn den nye fargen")
+    id = str(input("Skriv inn en vare ID"))
+    print(varer[id]["farger"])
+    nyFarge = str(input("skriv inn den nye fargen"))
     varer[str(id)]["farger"].append(nyFarge)  #https://www.geeksforgeeks.org/appending-to-list-in-python-dictionary/
+    return(varer[id]["farger"])
+
+
 
 oppdatereFarge()
 # oppdaterePris()
