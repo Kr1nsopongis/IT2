@@ -1,5 +1,6 @@
 import pygame
 
+f
 class Song:
     """A class to represent a song."""
 
