@@ -35,13 +35,14 @@ class Ball:
     # Sjekker om ballen er utenfor høyre/venstre kant
     if ((self.x - self.radius) <= 0) or ((self.x + self.radius) >= self.vindusobjekt.get_width()):
       self.xFart = -self.xFart
+      print(self.xFart)
 
     if ((self.y - self.radius) <= 0) or ((self.y + self.radius) >= self.vindusobjekt.get_height()):
       self.yFart = -self.yFart
     
     # Flytter ballen
-    self.x += self.yFart
-    self.y += self.xFart
+    self.x += self.xFart
+    self.y += self.yFart
 
 # Lager et Ball-objekt
 ball = Ball(350, 250, 1, 1 , 20, screen)
@@ -69,14 +70,14 @@ while True:
         yAvstand2 = (ball.y - ball2.y)**2  # y-avstand i andre
         avstand = m.sqrt(xAvstand2 + yAvstand2)
 
-        print(avstand)
+        # print(avstand)
 
         if avstand <= ball.radius+ball2.radius:
 
-           ball.xFart = -ball.xFart
-           ball.yFart = -ball.yFart
-           ball2.xFart = -ball2.xFart
-           ball2.yFart = -ball2.yFart
+           ball.xFart = -ball.xFart*1.05
+           ball.yFart = -ball.yFart*1.1
+           ball2.xFart = -ball2.xFart*1.3
+           ball2.yFart = -ball2.yFart*0.9
 
 
            
