@@ -61,18 +61,19 @@ class Ball2(Ball):
       super().__init__(x, y, xFart, yFart, radius, vindusobjekt)
   
    def flytt(self, taster):
-    if taster[K_w]:
+    if taster[K_w] and self.y > 0+self.radius/2:
       self.y -= self.yFart
-    if taster[K_s]:
+    if taster[K_s] and self.y < 800-self.radius/2:
+      print(self.y)
       self.y += self.yFart
-    if taster[K_a]:
+    if taster[K_a] and self.x > 0+self.radius/2:
       self.x -= self.xFart
     if taster[K_d]:
       self.x += self.xFart
 
 # Lager et Ball-objekt
 ball = Ball(350, 250, 1, 1 , 20, screen)
-ball2 = Ball2(100, 250, 1, 1, 20, screen)
+ball2 = Ball2(100, 250, 0.1, 0.1, 20, screen)
 
 
 
@@ -96,28 +97,28 @@ while fortsett:
 
     screen.fill(background)
 
-    def finnAvstand(ball, ball2):
-        xAvstand2 = (ball.x - ball2.x)**2  # x-avstand i andre
-        yAvstand2 = (ball.y - ball2.y)**2  # y-avstand i andre
-        avstand = m.sqrt(xAvstand2 + yAvstand2)
+    # def finnAvstand(ball, ball2):
+    #     xAvstand2 = (ball.x - ball2.x)**2  # x-avstand i andre
+    #     yAvstand2 = (ball.y - ball2.y)**2  # y-avstand i andre
+    #     avstand = m.sqrt(xAvstand2 + yAvstand2)
 
-        # print(avstand)
+    #     # print(avstand)
 
-        if avstand <= ball.radius+ball2.radius:
+    #     if avstand <= ball.radius+ball2.radius:
 
-           ball.xFart = -ball.xFart*1.01
-           ball.yFart = -ball.yFart*1.01
-           ball2.xFart = -ball2.xFart
-           ball2.yFart = -ball2.yFart
+    #        ball.xFart = -ball.xFart*1.01
+    #        ball.yFart = -ball.yFart*1.01
+    #        ball2.xFart = -ball2.xFart
+    #        ball2.yFart = -ball2.yFart
 
 
            
 
-        return avstand
+    #     return avstand
     
     trykkede_taster = pygame.key.get_pressed()
 
-    finnAvstand(ball, ball2)
+    # finnAvstand(ball, ball2)
 
     # pygame.draw.circle(screen, (255, 0, 0), (100, 250), 50)
     ball.flytt(trykkede_taster)
