@@ -1,7 +1,10 @@
 import pygame 
 import math as m
 from pygame.locals import (K_UP, K_DOWN, K_LEFT, K_RIGHT, K_w, K_a,K_s,K_d)
+import os
 
+def absRef(relRef):
+   return os.path.join(os.path.dirname(__file__), relRef) #Stjelt av linus
 
 YELLOW = (255, 255, 0)
 CYAN = (0, 255, 255)
@@ -14,9 +17,16 @@ GRAY = (127, 127, 127)
 WHITE = (255, 255, 255)
 
 background = GRAY
+clock = pygame.time.Clock()
+bakgrunn = pygame.image.load(absRef("Gulv.jpg")) 
+
+screen = pygame.display.set_mode((800, 800))
+
+boks = pygame.draw.circle(screen, (255, 0, 0), (100, 250), 50)
+
 
 pygame.init()
-screen = pygame.display.set_mode((800, 800))
+
 class Ball:
   """Klasse for å representere en ball"""
   def __init__(self, x, y, xFart, yFart, radius, vindusobjekt):
@@ -43,37 +53,45 @@ class Ball:
   #     self.yFart = -self.yFart
 
   def flytt(self, taster):
-    if taster[K_UP]:
+    if taster[K_UP] and self.y > 0+self.radius/2:
       self.y -= self.yFart
-    if taster[K_DOWN]:
+    if taster[K_DOWN] and self.y < 800-self.radius/2:
       self.y += self.yFart
-    if taster[K_LEFT]:
+    if taster[K_LEFT] and self.x > 0+self.radius/2:
       self.x -= self.xFart
-    if taster[K_RIGHT]:
+    if taster[K_RIGHT] and self.x < 800-self.radius/2:
       self.x += self.xFart
     
-    # Flytter ballen
-    # self.x += self.xFart
-    # self.y += self.yFart
+    
       
 class Ball2(Ball):
    def __init__(self, x, y, xFart, yFart, radius, vindusobjekt):
       super().__init__(x, y, xFart, yFart, radius, vindusobjekt)
-  
-   def flytt(self, taster):
-    if taster[K_w] and self.y > 0+self.radius/2:
-      self.y -= self.yFart
-    if taster[K_s] and self.y < 800-self.radius/2:
-      print(self.y)
-      self.y += self.yFart
-    if taster[K_a] and self.x > 0+self.radius/2:
-      self.x -= self.xFart
-    if taster[K_d]:
-      self.x += self.xFart
+      self.x = x
+      self.y = y
+      self.xFart = xFart
+      self.yFart = yFart
+      self.radius = radius
+      self.vindusobjekt = vindusobjekt
+    
+      def fart(self): 
+          self.x += self.xFart
+          self.y += self.yFart
+  #  def flytt(self, taster):
+  #   if taster[K_w] and self.y > 0+self.radius/2:
+  #     self.y -= self.yFart
+  #   if taster[K_s] and self.y < 800-self.radius/2:
+  #     self.y += self.yFart
+  #   if taster[K_a] and self.x > 0+self.radius/2:
+  #     self.x -= self.xFart
+  #   if taster[K_d] and self.x < 800-self.radius/2:
+  #     self.x += self.xFart 
+      
+    
 
 # Lager et Ball-objekt
-ball = Ball(350, 250, 1, 1 , 20, screen)
-ball2 = Ball2(100, 250, 0.1, 0.1, 20, screen)
+ball = Ball(350, 250, 4, 4 , 20, screen)
+ball2 = Ball2(100, 250, 4, 4, 20, screen)
 
 
 
@@ -96,6 +114,7 @@ while fortsett:
                 print(background)
 
     screen.fill(background)
+    screen.blit(bakgrunn, (0,0))
 
     # def finnAvstand(ball, ball2):
     #     xAvstand2 = (ball.x - ball2.x)**2  # x-avstand i andre
@@ -120,13 +139,13 @@ while fortsett:
 
     # finnAvstand(ball, ball2)
 
-    # pygame.draw.circle(screen, (255, 0, 0), (100, 250), 50)
     ball.flytt(trykkede_taster)
-    ball2.flytt(trykkede_taster)
+    ball2.fart()
     ball.tegn()
     ball2.tegn()
 
     pygame.display.update()
+    clock.tick(60)
     
 
         
