@@ -25,11 +25,15 @@ bakgrunn = pygame.image.load(absRef("Gulv.jpg"))
 stjerne = pygame.image.load(absRef("stjernee.png")) 
 stjerne = pygame.transform.scale(stjerne, (60,60))
 
+levelGameOver = 0
+
 
 font = pygame.font.SysFont("Arial",30, bold = True)
 
 screen = pygame.display.set_mode((800, 800))
 
+def gjenta():
+  brett1()
 
 def SkrivTekst(tekst,font,tekstFarge,x,y):
    tekstBoks = font.render(tekst,True, tekstFarge)
@@ -37,6 +41,9 @@ def SkrivTekst(tekst,font,tekstFarge,x,y):
 
 def printBilde(bilde,x,y):
    screen.blit(bilde,(x,y))
+
+
+
 
 
 
@@ -83,7 +90,7 @@ class Ball2(Ball):
   def flytt(self):
     if ((self.x - self.radius) <= 0) or ((self.x + self.radius) >= self.vindusobjekt.get_width()):
       self.xFart = -self.xFart
-      print(self.xFart) 
+      # print(self.xFart) 
 
     if ((self.y - self.radius) <= 0) or ((self.y + self.radius) >= self.vindusobjekt.get_height()):
       self.yFart = -self.yFart
@@ -109,54 +116,28 @@ ball2 = Ball2(100, 250, 4, 0, 20, screen)
 ball3 = Ball2(100, 300, 7, 0, 20, screen)
 ball4 = Ball2(100, 350, 6.3, 0, 20, screen)
 
-
-
-fortsett = True
-while fortsett:
-     # Sjekker om brukeren har lukket vinduet
-    for event in pygame.event.get():
-      if event.type == pygame.QUIT:
-        fortsett = False
-
-    for event in pygame.event.get():
-        print(event)
-    
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_r:
-                background = RED
-                print(background)
-            elif event.key == pygame.K_g:
-                background = GREEN
-                print(background)
-
-    screen.fill(background)
-    screen.blit(bakgrunn, (0,0))
-    
-    
-
-    # def finnAvstand(ball, ball2):
-    #     xAvstand2 = (ball.x - ball2.x)**2  # x-avstand i andre
-    #     yAvstand2 = (ball.y - ball2.y)**2  # y-avstand i andre
-    #     avstand = m.sqrt(xAvstand2 + yAvstand2)
-
-    #     # print(avstand)
-
-    #     if avstand <= ball.radius+ball2.radius:
-
-    #        ball.xFart = -ball.xFart*1.01
-    #        ball.yFart = -ball.yFart*1.01
-    #        ball2.xFart = -ball2.xFart
-    #        ball2.yFart = -ball2.yFart
-
-
-           
-
-    #     return avstand
-    
+def brett1():
+    global levelGameOver
     trykkede_taster = pygame.key.get_pressed()
 
-    # finnAvstand(ball, ball2)
 
+    def finnAvstand(ball, ballx):
+      xAvstand2 = (ball.x - ballx.x)**2  # x-avstand i andre
+      yAvstand2 = (ball.y - ballx.y)**2  # y-avstand i andre
+      avstand = m.sqrt(xAvstand2 + yAvstand2)
+
+      # print(avstand)
+
+      if avstand <= ball.radius+ballx.radius:
+        ball.x = 400
+        ball.y = 750
+       
+    
+
+    finnAvstand(ball, ball2)
+    finnAvstand(ball, ball3)
+    finnAvstand(ball, ball4)
+ 
     ball.flytt(trykkede_taster)
     ball2.flytt()
     ball2.fart()
@@ -177,6 +158,30 @@ while fortsett:
     SkrivTekst("Gå til stjernen!",font,(0,0,0), 10,100)
     printBilde(stjerne,66,200)
 
+    if ball.x == 370 and ball.y == 30:
+      levelGameOver = 1
+      return levelGameOver
+
+    
+
+
+fortsett = True
+while fortsett:
+     # Sjekker om brukeren har lukket vinduet
+    for event in pygame.event.get():
+      if event.type == pygame.QUIT:
+        fortsett = False
+
+    for event in pygame.event.get():
+        print(event)
+
+    screen.fill(background)
+    screen.blit(bakgrunn, (0,0))
+
+    
+  
+    if levelGameOver == 0:
+      brett1()
 
     pygame.display.update()
     clock.tick(60)
