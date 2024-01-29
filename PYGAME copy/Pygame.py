@@ -28,7 +28,7 @@ stjerne = pygame.transform.scale(stjerne, (60,60))
 levelGameOver = 0
 
 
-font = pygame.font.SysFont("Arial",30, bold = True)
+font = pygame.font.SysFont("Arial",20, bold = True)
 
 screen = pygame.display.set_mode((800, 800))
 
@@ -66,15 +66,37 @@ class Ball:
 
 
   def flytt(self, taster):
-    if taster[K_UP] and self.y > 0+self.radius/2:
-      self.y -= self.yFart
-    if taster[K_DOWN] and self.y < 800-self.radius/2:
-      self.y += self.yFart
-    if taster[K_LEFT] and self.x > 0+self.radius/2:
-      self.x -= self.xFart
-    if taster[K_RIGHT] and self.x < 800-self.radius/2:
-      self.x += self.xFart
+    if self.y > 200:
+      if taster[K_UP] and self.y > 0+self.radius/2:
+        self.y -= self.yFart
+      if taster[K_DOWN] and self.y < 800-self.radius/2:
+        self.y += self.yFart
+      if taster[K_LEFT] and self.x > 200+self.radius/2:
+        self.x -= self.xFart
+      if taster[K_RIGHT] and self.x < 600-self.radius/2:
+        self.x += self.xFart
+    elif self.y == 200 and self.x<200 or self.x>600:
+      # if taster[K_UP] and self.y > 0+self.radius/2:
+      #   self.y -= self.yFart
+      if taster[K_DOWN] and self.y < 800-self.radius/2:
+        self.y += self.yFart
+      if taster[K_LEFT] and self.x > 0+self.radius/2:
+        self.x -= self.xFart
+      if taster[K_RIGHT] and self.x < 800-self.radius/2:
+        self.x += self.xFart
+    else:
+      if taster[K_UP] and self.y > 0+self.radius/2:
+        self.y -= self.yFart
+      if taster[K_DOWN] and self.y < 800-self.radius/2:
+        self.y += self.yFart
+      if taster[K_LEFT] and self.x > 0+self.radius/2:
+        self.x -= self.xFart
+      if taster[K_RIGHT] and self.x < 800-self.radius/2:
+        self.x += self.xFart
+
     
+
+      
     
       
 class Ball2(Ball):
@@ -112,9 +134,9 @@ class Ball2(Ball):
 
 # Lager et Ball-objekt
 ball = Ball(400, 750, 4, 4 , 20, screen)
-ball2 = Ball2(100, 250, 4, 0, 20, screen)
-ball3 = Ball2(100, 300, 7, 0, 20, screen)
-ball4 = Ball2(100, 350, 6.3, 0, 20, screen)
+ball2 = Ball2(100, 250, 15, 0, 20, screen)
+ball3 = Ball2(100, 300, 10, 0, 20, screen)
+ball4 = Ball2(100, 350, 12, 0, 20, screen)
 mål = Ball2(400,60,0,0,20,screen)
 
 def brett1():
@@ -134,8 +156,6 @@ def brett1():
           ball.x = 400
           ball.y = 750
        
-    
-
     finnAvstand(ball, ball2)
     finnAvstand(ball, ball3)
     finnAvstand(ball, ball4)
@@ -154,11 +174,8 @@ def brett1():
     ball4.tegn()
     mål.tegn()
    
-    
-
     printBilde(stjerne,370,30)
     
-
     pygame.draw.rect(screen, (133,133,133), pygame.Rect(0, 0, 200, 600))
     pygame.draw.rect(screen, (133,133,133), pygame.Rect(600,0, 200, 600))
     SkrivTekst("Gå til stjernen!",font,(0,0,0), 10,100)
@@ -166,8 +183,6 @@ def brett1():
 
     if ball.x == 370 and ball.y == 30:
       pygame.quit()
-
-    
 
 
 fortsett = True
@@ -183,8 +198,6 @@ while fortsett:
     screen.fill(background)
     screen.blit(bakgrunn, (0,0))
 
-    
-  
     if levelGameOver == 0:
       brett1()
 

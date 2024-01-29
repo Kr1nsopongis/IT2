@@ -92,7 +92,7 @@ class Maps():
 class SpecialMaps(Maps):
     def __init__(self, mapPosition, retninger,effekt):
         super().__init__(mapPosition, retninger)
-        self.effekt = effekt
+        self.effekt = effekt 
         
 
 # Players
