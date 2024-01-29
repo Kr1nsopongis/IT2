@@ -115,6 +115,7 @@ ball = Ball(400, 750, 4, 4 , 20, screen)
 ball2 = Ball2(100, 250, 4, 0, 20, screen)
 ball3 = Ball2(100, 300, 7, 0, 20, screen)
 ball4 = Ball2(100, 350, 6.3, 0, 20, screen)
+mål = Ball2(400,60,0,0,20,screen)
 
 def brett1():
     global levelGameOver
@@ -127,28 +128,33 @@ def brett1():
       avstand = m.sqrt(xAvstand2 + yAvstand2)
 
       # print(avstand)
-
-      if avstand <= ball.radius+ballx.radius:
-        ball.x = 400
-        ball.y = 750
+      if ballx == mål and avstand <= ball.radius+ballx.radius:
+        print("Du vant")
+      elif avstand <= ball.radius+ballx.radius:
+          ball.x = 400
+          ball.y = 750
        
     
 
     finnAvstand(ball, ball2)
     finnAvstand(ball, ball3)
     finnAvstand(ball, ball4)
+    finnAvstand(ball,mål)
  
     ball.flytt(trykkede_taster)
+    ball.tegn()
     ball2.flytt()
     ball2.fart()
+    ball2.tegn()
     ball3.flytt()
     ball3.fart()
     ball3.tegn()
     ball4.flytt()
     ball4.fart()
     ball4.tegn()
-    ball.tegn()
-    ball2.tegn()
+    mål.tegn()
+   
+    
 
     printBilde(stjerne,370,30)
     
@@ -159,8 +165,7 @@ def brett1():
     printBilde(stjerne,66,200)
 
     if ball.x == 370 and ball.y == 30:
-      levelGameOver = 1
-      return levelGameOver
+      pygame.quit()
 
     
 
