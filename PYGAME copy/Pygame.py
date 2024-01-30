@@ -42,12 +42,6 @@ def SkrivTekst(tekst,font,tekstFarge,x,y):
 def printBilde(bilde,x,y):
    screen.blit(bilde,(x,y))
 
-
-
-
-
-
-
 class Ball:
   """Klasse for å representere en ball"""
   def __init__(self, x, y, xFart, yFart, radius, vindusobjekt):
@@ -94,11 +88,6 @@ class Ball:
       if taster[K_RIGHT] and self.x < 800-self.radius/2:
         self.x += self.xFart
 
-    
-
-      
-    
-      
 class Ball2(Ball):
   def __init__(self, x, y, xFart, yFart, radius, vindusobjekt):
     super().__init__(x, y, xFart, yFart, radius, vindusobjekt)
@@ -129,8 +118,7 @@ class Ball2(Ball):
   #     self.x -= self.xFart
   #   if taster[K_d] and self.x < 800-self.radius/2:
   #     self.x += self.xFart 
-      
-    
+
 
 # Lager et Ball-objekt
 ball = Ball(400, 750, 4, 4 , 20, screen)
