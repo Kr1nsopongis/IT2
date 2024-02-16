@@ -177,8 +177,6 @@ while fortsett:
     screen.fill(background)
     screen.blit(bakgrunn, (0,0))
   
-
-    
     trykkede_taster = pygame.key.get_pressed()
 
     ball.flytt(trykkede_taster)
@@ -186,7 +184,7 @@ while fortsett:
     ball.tegn()
     
 
-    kollisjonsSkjekk(ball)
+    # kollisjonsSkjekk(ball)
 
     ball2.ballRektangel()
     ball2.flytt()
