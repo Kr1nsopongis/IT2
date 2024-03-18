@@ -1,6 +1,6 @@
 import pygame 
 import math as m
-from pygame.locals import (K_UP, K_DOWN, K_LEFT, K_RIGHT, K_w, K_a,K_s,K_d)
+from pygame.locals import (K_UP, K_DOWN, K_LEFT, K_RIGHT)
 import os
 
 pygame.init()
