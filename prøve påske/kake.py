@@ -22,7 +22,7 @@ for i in range(0,len(df)):
    else:
       tall[liste.index(df['age_group'][i])] += 1
 
-print("hei")
+
 
 print(tall)
 

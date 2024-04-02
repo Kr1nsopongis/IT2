@@ -14,8 +14,8 @@ liste = []
 tall = []
 
 for i in range(0,len(df)):
-   if df['gender'][i]+df['age_group'][i] not in liste:
-    liste.append(df['gender'][i]+df['age_group'][i])
+   if df['age_group'][i] not in liste:
+    liste.append(['age_group'][i])
     tall.append(1)
     print(liste)
     
