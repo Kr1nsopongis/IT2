@@ -1,2 +1,6 @@
-assert sum([1,1,3]) == 6,"ikke"
+import pygame as p
+import math as m
 
+p.init()
+
+window = 
