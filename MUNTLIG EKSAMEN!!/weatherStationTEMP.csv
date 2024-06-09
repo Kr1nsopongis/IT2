@@ -1,4 +1,5 @@
-Kyllingstad,1,1
-llskjdflaskd,2,2
-ølsjfølajsdfø,3,3
-jøasjøasjdøasj,4,4
+name,positionX,positionY,radonLevel,pressure,moisture,wind
+Kyllingstad,1,1,NaN
+llskjdflaskd,2,2,NaN
+ølsjfølajsdfø,3,3,NaN
+jøasjøasjdøasj,4,4,NaN
