@@ -7,8 +7,6 @@ def absRef(relRef):
 
    return os.path.join(os.path.dirname(__file__), relRef) #Lånt av linus
 
-
-
 objekter = []
 filmer = []
 kategorier = []
@@ -63,9 +61,9 @@ leggTilObjekt("Batmobil",2500000,10000000,"merchandise","DC")
 leggTilFilm("Ironman 1",200,100,"film","Marvel",120)
 leggTilFilm("Batman",200,100,"film","DC",123)
 leggTilFilm("Fifa the movie",200,1,"film","Fifa",456)
+leggTilFilm("dfsdf",200,1,"film","djfs",222)
 
-
-with open (absRef('objekter.csv'), 'w', newline='',encoding= 'utf-8') as file:
+with open (absRef('objekter.csv'), 'w', newline='',encoding= 'utf-8',) as file:
     writer = csv.writer(file)
     writer.writerow(['navn','kjopePris','prisVerdi','kategori','franchise'])
     for objekt in objekter:
@@ -98,6 +96,10 @@ def utskriftFranchise(franchise):
    for rad in range(0,len(dataFilmer)):
     if dataFilmer['franchise'][rad] == franchise:
         print("\t",dataFilmer['navn'][rad])
+
+def fortjenester():
+   for objekt in objekter:
+      print(objekt.fortjeneste())
    
 #Her er funskjonene for å skrive ut ting i de forskjellige kategoriene
 utskriftKategori("merchandise")
