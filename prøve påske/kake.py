@@ -34,4 +34,4 @@ x = liste
 y = tall
 plt.pie(y, labels= y)
 plt.title("Aldersfordeling")
-plt.show()
+plt.show()  
