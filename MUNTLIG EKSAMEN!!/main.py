@@ -1,5 +1,4 @@
 import os 
-import pandas as pd
 import csv
 
 stations = []
@@ -19,7 +18,7 @@ class WeatherStation:
         self.positionY = positionY
     
     def selfInfo(self):
-      print("Information: ","\n\tStation name: ",self.name,"\n\t No further information")
+      print("Information: ","\n\tStation name: ",self.name,"\n\tNo further information")
     
     def selfPos(self):
        print("The station is located at: \n\tX: ",self.positionX, "\n\tY: ",self.positionY)
@@ -31,14 +30,18 @@ class RadonStation(WeatherStation):
 
    def selfInfo(self):
       print("Information: ","\n\tStation name: ",self.name,"\n\tRadon level: ",self.radonLevel)
-    
 
+class PressureStations(WeatherStation):
+  def __init__(self, name, positionX, positionY,pressure):
+    super().__init__(name, positionX, positionY)
+    self.pressure = pressure 
+  
+    
 with open (absRef("weatherStations.csv"), 'r', newline='',encoding= 'utf-8') as file:
   reader = csv.reader(file, delimiter=",")
 #   writer = csv.writer(file)
   for row in reader: # Retreives stations from CSV and adds to list 
-    print(" ".join(row))
- 
+    
     if row[3] != "NaN":
       stations.append(RadonStation(row[0],row[1],row[2],row[3]))
     else:
@@ -68,18 +71,26 @@ def addStation():
       stations.append(RadonStation(name,positionX,positionY,radonLevel))
     else:
       stations.append(WeatherStation(name,positionX,positionY))
+  
+    updateDF()
 
-# print(stations[i].selfPos())
-# print(stations[1].positionX)
-# addStation()
-# updateDF()
+status = True
+while status == True:
 
-# status = True
-# while status == True:
-
-print("\n\n\n\n\n\n What do you want to do?")
-input = input("View info of one station = 1, Add station = 2, Quit = 3")
-if input == 1:
-   
-
+  print("\n What do you want to do?")
+  inpt = input("View info of one station = 1, Add station = 2, Quit = 3")
+  inpt = int(inpt)
+  print(type(inpt))
+  try: 
+    inpt = int(inpt)
+    if inpt == 1:
+      for i in range(0,len(stations)):
+        print(stations[i].selfInfo())
+    if inpt == 2:
+      addStation()
+    if inpt == 3:
+      status == False
+  except:
+    print("Write one of the following numbers to trigger actions")
+    # inpt = input("View info of one station = 1, Add station = 2, Quit = 3")
   
