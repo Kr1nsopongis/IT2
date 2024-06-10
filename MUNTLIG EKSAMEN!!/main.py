@@ -95,19 +95,26 @@ def RemoveStation():
       stations.pop(i)
   updateDF()
 
-def displayData():
-  for i in range(1,len(stations)):
-    try:
-      print(stations[i].name)
-      stations[i].selfPressure()
-    except:
-      pass
+# def displayData(choice):
+#   choice = str(choice)
+#   for i in range(1,len(stations)):
+#     if choice == "radonLevel":
+#       try:
+#         RadonStation.selfInfo()
+#       except:
+#         pass
+#     if choice == "pressure":
+#       try:
+#         PressureStation.selfInfo()
+#       except:
+#         pass    
+  
 
 status = True
 while status:
 
   print("\nWhat do you want to do?")
-  inpt = input("View info of all stations = 1, Add station = 2, Veiw all stations position = 3, Remove station = 4 --->: ")  #Legg inn skjekk
+  inpt = input("View info of all stations = 1, Add station = 2, Veiw all stations position = 3, Remove station = 4, View all stations with attribute = 5 --->: ")  #Legg inn skjekk
 
   try: 
     inpt = int(inpt)
@@ -121,5 +128,13 @@ while status:
         print(stations[i].selfPos())
     if inpt == 4:
       RemoveStation()
+    if inpt == 5:
+
+      choice = input("Get all stations with either: radonLevel,pressure.\n Write one of the above:  ")
+      for station in stations:
+        if hasattr(station, choice) and getattr(station, choice) != "NaN": #https://www.codingem.com/python-check-if-object-has-attribute/
+            station.selfInfo()
+   
   except:
     print("Write one of the following numbers to trigger actions")
+
