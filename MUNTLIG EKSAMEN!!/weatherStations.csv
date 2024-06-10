@@ -1,8 +1,5 @@
 name,positionX,positionY,radonLevel,pressure,moisture,wind
-en,en,en,NaN,1,NaN,NaN
-tre,tre,tre,NaN,1,NaN,NaN
-fyre,fyre,fyre,1,NaN,NaN,NaN
-fem,fem,fem,7,NaN,1,NaN
-6,6,6,9,NaN,1,NaN
-Florida,6.45434454,7.48484848,8,NaN,NaN,NaN
-amalieskram,1,1,1,1,1,1
+Florida,6.45434454,7.48484848,NaN,NaN,NaN,NaN
+amalieskram,1,1,NaN,NaN,NaN,NaN
+Kronstad,7.88888,"9,5555",NaN,NaN,NaN,NaN
+Akvariet,9.888888,9.9999,NaN,NaN,NaN,NaN

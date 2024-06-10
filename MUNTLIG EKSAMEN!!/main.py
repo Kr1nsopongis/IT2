@@ -76,8 +76,6 @@ def addStation():
     positionY = input("Position Y?")
     radonLevel = input("Radon level?")
     pressure = input("Pressure?")
-    moisture = input("Moisture?")
-    wind = input("Wind?")
     if radonLevel != "NaN":
       stations.append(RadonStation(name,positionX,positionY,radonLevel))
     elif pressure != "NaN":
