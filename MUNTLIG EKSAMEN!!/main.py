@@ -21,7 +21,7 @@ class WeatherStation:
       print("Information: ","\n\tStation name: ",self.name,"\n\tNo further information")
     
     def selfPos(self):
-       print("The station is located at: \n\tX: ",self.positionX, "\n\tY: ",self.positionY)
+       print("The station ",self.name," is located at: \n\tX: ",self.positionX, "\n\tY: ",self.positionY)
 
 class RadonStation(WeatherStation):
    def __init__(self, name, positionX, positionY,radonLevel):
@@ -60,14 +60,14 @@ def updateDF():
         try:
           if stations[i].radonLevel != "NaN":
             writer.writerow([stations[i].name,stations[i].positionX,stations[i].positionY,stations[i].radonLevel],"NaN")
-            print("skrivrad")
+            # print("skrivrad")
         except:
           if stations[i].pressure != "NaN":
             writer.writerow([stations[i].name, stations[i].positionX, stations[i].positionY, "NaN", stations[i].pressure, "NaN", "NaN"])
-            print("skrivtrykkj")
+            # print("skrivtrykkj")
       except:
         writer.writerow([stations[i].name,stations[i].positionX,stations[i].positionY,"NaN","NaN","NaN","NaN"])
-        print("skrivalt")        
+        # print("skrivalt")        
 
 def addStation():
     print("Fill in information about station. If no info put in: NaN")
@@ -93,20 +93,6 @@ def RemoveStation():
       stations.pop(i)
   updateDF()
 
-# def displayData(choice):
-#   choice = str(choice)
-#   for i in range(1,len(stations)):
-#     if choice == "radonLevel":
-#       try:
-#         RadonStation.selfInfo()
-#       except:
-#         pass
-#     if choice == "pressure":
-#       try:
-#         PressureStation.selfInfo()
-#       except:
-#         pass    
-  
 
 status = True
 while status:
