@@ -31,10 +31,14 @@ class RadonStation(WeatherStation):
    def selfInfo(self):
       print("Information: ","\n\tStation name: ",self.name,"\n\tRadon level: ",self.radonLevel)
 
-class PressureStations(WeatherStation):
+class PressureStation(WeatherStation):
   def __init__(self, name, positionX, positionY,pressure):
     super().__init__(name, positionX, positionY)
     self.pressure = pressure 
+  
+  def selfInfo(self):
+    print("\n\t ------------------ \n\t","Name: ",self.name,"\n\tPressure: ",self.pressure)
+
   
     
 with open (absRef("weatherStations.csv"), 'r', newline='',encoding= 'utf-8') as file:
@@ -47,7 +51,6 @@ with open (absRef("weatherStations.csv"), 'r', newline='',encoding= 'utf-8') as 
     else:
       stations.append(WeatherStation(row[0],row[1],row[2]))
 
-  
 def updateDF():
    with open (absRef("weatherStations.csv"), 'w', newline='',encoding= 'utf-8') as file:
     writer = csv.writer(file)
@@ -56,9 +59,11 @@ def updateDF():
     for i in range(1,len(stations)):
       try:
         if stations[i].radonLevel != "NaN":
-          writer.writerow([stations[i].name,stations[i].positionX,stations[i].positionY,stations[i].radonLevel])
+          writer.writerow([stations[i].name,stations[i].positionX,stations[i].positionY,stations[i].radonLevel],"NaN")
+        elif stations[i].pressure != "NaN":
+          writer.writerow([stations[i].name,stations[i].positionX,stations[i].positionY,"NaN",stations[i].pressure])
       except:
-        writer.writerow([stations[i].name,stations[i].positionX,stations[i].positionY,])
+        writer.writerow([stations[i].name,stations[i].positionX,stations[i].positionY,"NaN"])
               
 
 def addStation():
@@ -67,20 +72,24 @@ def addStation():
     positionX = input("Position X?")
     positionY = input("Position Y?")
     radonLevel = input("Radon level?")
+    pressure = input("Pressure?")
+    moisture = input("Moisture?")
+    wind = input("Wind?")
     if radonLevel != "NaN":
       stations.append(RadonStation(name,positionX,positionY,radonLevel))
+    elif pressure != "NaN":
+      stations.append(PressureStation(name,positionX,positionY,pressure))
     else:
       stations.append(WeatherStation(name,positionX,positionY))
   
     updateDF()
 
 status = True
-while status == True:
+while status:
 
   print("\n What do you want to do?")
-  inpt = input("View info of one station = 1, Add station = 2, Quit = 3")
-  inpt = int(inpt)
-  print(type(inpt))
+  inpt = input("View info of all stations = 1, Add station = 2, Vew all stations position = 3")  #Legg inn skjekk
+  # print(type(inpt))
   try: 
     inpt = int(inpt)
     if inpt == 1:
@@ -89,7 +98,8 @@ while status == True:
     if inpt == 2:
       addStation()
     if inpt == 3:
-      status == False
+      for i in range(0,len(stations)):
+        print(stations[i].selfPos())
   except:
     print("Write one of the following numbers to trigger actions")
     # inpt = input("View info of one station = 1, Add station = 2, Quit = 3")
